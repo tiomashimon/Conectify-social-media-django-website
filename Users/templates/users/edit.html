@@ -1,0 +1,10 @@
+{% extends 'users/base.html' %}
+{% block body %}
+<h2>Edit profile form</h2>
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
