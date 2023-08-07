@@ -1,63 +1,36 @@
 {% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- Подключение стилей Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'food/style.css' %}">
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'users/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'users/style.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="shadow-lg">
+           <div class="px-4 mx-auto">
+             <div class="flex justify-between">
+                <!--Website logo-->
+                <div>
+                    <a class="flex" href="{% url 'index' %}">
+                        <img class="h-8 w-8 mr-2" src="{% static 'users/images/social.png' %}" alt="">
+                        <span class="font-semibold text-lg text-gray-500">Photo App</span>
+                    </a>
+                </div>
+                <!--Website items-->
+                <div class="space-x-1">
+                     {% if request.user.is_authenticated %}
+                    <a class="py-4 px-2 text-gray-500 font-semibold " href="{% url 'logout' %}">Logout</a>
+                      {% else %}
+                    <a class="py-4 px-2 text-gray-500 font-semibold " href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                    <a class="py-4 px-2 text-gray-500 font-semibold " href="">Link 1</a>
 
+                </div>
+            </div>
+           </div>
+        </nav>
 
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-0">
-    <a class="navbar-brand" href="{% url 'index' %}">Foodora</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'edit' %}">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Receipts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            {% endif %}
-
-
-        </ul>
-
-    </div>
-</nav>
-{% if messages %}
-{% for message in messages %}
-<h2 class="alert alert-{{ message.tags }} mt-0"> {{ message }}</h2>
-{% endfor %}
-{% endif %}
-
-
-<!-- Подключение скриптов Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-{% block body %}
-{% endblock %}
-
-</body>
+        {% block body %}
+        {% endblock %}
+    </body>
 </html>

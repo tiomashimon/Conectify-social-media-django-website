@@ -1,32 +1,22 @@
 {% extends 'users/base.html' %}
 {% block body %}
+<h1 class="text-2xl m-10">👨🏻 Login User</h1>
 
-<h2>{{ exceptions }}</h2>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-lg-6">
-      <form action="" method="POST" class="mt-4">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="{{ form.username.id_for_label }}">Username</label>
-          <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}">
-        </div>
-        <div class="form-group">
-          <label for="{{ form.password.id_for_label }}">Password</label>
-          <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}">
-        </div>
-
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary btn-lg">Login</button>
-        </div>
-        <div class="text-center mt-3">
-          <h3>You don't have an account? <a href="{% url 'register' %}">Sign up</a></h3>
-          <h3>Forgot a password? <a href="{% url 'password_reset' %}">Reset</a></h3>
-
-        </div>
-      </form>
+<div class="container py-5">
+<form method="POST" class="bg-white shadow-md m-10 w-2/5 rounded px-8 pt-6 pb-8 mb-4">
+    {% csrf_token %}
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Username</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ form.username }}</div>
     </div>
-  </div>
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Password</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ form.password }}</div>
+    </div>
+
+    <button class="text-white bg-green-500 px-5 py-2 my-5" type="submit">Login</button>
+</form>
 </div>
 
-{% endblock %}
+<p class="px-10 py-10"><a class="text-indigo-500" href="{% url 'password_reset' %}">Forgot password? Click here to reset</a></p>
+{% endblock%}

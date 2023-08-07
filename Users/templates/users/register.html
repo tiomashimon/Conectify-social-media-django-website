@@ -1,42 +1,45 @@
 {% extends 'users/base.html' %}
-
 {% block body %}
-{% if user.is_authenticated %}
-<p>Redirecting to <a href="{% url 'index' %}">new page</a>...</p>
-    <script>
-        window.location.href = "/food";
-    </script>
-{% endif %}
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-lg-6">
-      <form action="" method="POST" class="mt-4">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="{{ form.username.id_for_label }}">Username</label>
-          <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}">
-        </div>
-        <div class="form-group">
-          <label for="{{ form.email.id_for_label }}">Email</label>
-          <input type="email" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}">
-        </div>
-        <div class="form-group">
-          <label for="{{ form.password1.id_for_label }}">Password</label>
-          <input type="password" class="form-control" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}">
-        </div>
-        <div class="form-group">
-          <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
-          <input type="password" class="form-control" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}">
-        </div>
+<h1 class="text-2xl m-10">👨🏻 Register User</h1>
 
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary btn-lg">Sign up</button>
-        </div>
-        <div class="text-center mt-3">
-          <h3>Already have an account? <a href="{% url 'login' %}">Login</a></h3>
-        </div>
-      </form>
+<div class="container py-5">
+<form method="POST" class="bg-white shadow-md m-10 w-2/5 rounded px-8 pt-6 pb-8 mb-4">
+    {% csrf_token %}
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Email</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ user_form.email }}</div>
     </div>
-  </div>
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Username</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ user_form.username }}</div>
+    </div>
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Firstname</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ user_form.first_name }}</div>
+    </div>
+     <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Password</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ user_form.password }}</div>
+    </div>
+     <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="">Confirm Password</label>
+        <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10"> {{ user_form.password2 }}</div>
+    </div>
+
+    <button class="text-white bg-green-500 px-5 py-2 my-5" type="submit">Register</button>
+</form>
 </div>
-{% endblock %}
+
+<p class="px-10 py-10"><a class="text-indigo-500" href="{% url 'password_reset' %}">Forgot password? Click here to reset</a></p>
+
+
+
+{% endblock%}
+
+
+
+
+
+
+
+
