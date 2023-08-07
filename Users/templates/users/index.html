@@ -2,4 +2,11 @@
 
 {% block body %}
 <h1>This is page for users</h1>
+{% for post in posts %}
+<h3>{{ post.user.username }}</h3>
+    <p>{{ post.title }}</p>
+<img src="{{ post.image.url }}" alt="" height="400" width="300">
+    <p>{{ post.caption }}</p>
+
+{% endfor %}
 {% endblock %}
