@@ -1,7 +1,7 @@
 {% extends 'users/base.html' %}
 {% block body %}
 
-
+<h2>{{ exceptions }}</h2>
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-lg-6">
@@ -20,7 +20,7 @@
           <button type="submit" class="btn btn-primary btn-lg">Login</button>
         </div>
         <div class="text-center mt-3">
-          <h3>You don't have an account? <a href="{% url 'login' %}">Sign up</a></h3>
+          <h3>You don't have an account? <a href="{% url 'register' %}">Sign up</a></h3>
           <h3>Forgot a password? <a href="{% url 'password_reset' %}">Reset</a></h3>
 
         </div>

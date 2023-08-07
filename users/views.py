@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
@@ -15,9 +15,11 @@ def user_login(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponse('User logged in successfully')
+                return redirect('index')
             else:
-                return HttpResponse('Wrong username or password')
+                exceptions = 'Wrong username or password'
+                form = LoginForm()
+                return render(request, 'users/login.html', {'form': form, 'exceptions': exceptions})
 
     else:
         form = LoginForm()

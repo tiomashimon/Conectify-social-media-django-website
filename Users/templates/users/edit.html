@@ -1,10 +1,27 @@
 {% extends 'users/base.html' %}
 {% block body %}
-<h2>Edit profile form</h2>
-<form enctype="multipart/form-data" method="post">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    <button type="submit">Save</button>
-</form>
+<div class="container">
+    <h2>Edit Profile Form</h2>
+    <form class="form" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ user_form.first_name.label_tag }}
+            {{ user_form.first_name }}
+        </div>
+        <div class="form-group">
+            {{ user_form.last_name.label_tag }}
+            {{ user_form.last_name }}
+        </div>
+        <div class="form-group">
+            {{ user_form.email.label_tag }}
+            {{ user_form.email }}
+        </div>
+        <div class="form-group">
+            {{ profile_form.photo.label_tag }}
+            {{ profile_form.photo }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
 {% endblock %}
